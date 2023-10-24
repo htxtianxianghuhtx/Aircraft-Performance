@@ -49,14 +49,14 @@ def ISA_calc(h):
     T1to2 = T0 + lambda1 * H1
     T3 = T1to2 + lambda3 * (H3 - H2)
     T4to5 = T3 + lambda4 * (H4 - H3)
-    P1 = P0 * (1 + lambda1 * H1 / T0) ** (-g * M / (R * lambda1))
+    P1 = P0 * (1 + lambda1 * H1 / T0)**(-g * M / (R * lambda1))
     P2 = P1 * math.exp(-g * M * (H2 - H1) / (R * T1to2))
-    P3 = P2 * (1 + lambda3 * (H3 - H2) / T1to2) ** (-g * M / (R * lambda3))
-    P4 = P3 * (1 + lambda4 * (H4 - H3)/ T3) ** (-g * M / (R * lambda4))
-    rho1 = rho0 * (1 + lambda1 * H1 / T0) ** (-g * M / (R * lambda1) - 1)
+    P3 = P2 * (1 + lambda3 * (H3 - H2) / T1to2)**(-g * M / (R * lambda3))
+    P4 = P3 * (1 + lambda4 * (H4 - H3)/ T3)**(-g * M / (R * lambda4))
+    rho1 = rho0 * (1 + lambda1 * H1 / T0)**(-g * M / (R * lambda1) - 1)
     rho2 = rho1 * math.exp(-g * M * (H2 - H1) / (R * T1to2))
-    rho3 = rho2 * (1 + lambda3 * (H3 - H2) / T1to2) ** (-g * M / (R * lambda3) - 1)
-    rho4 = rho3 * (1 + lambda4 * (H4 - H3) / T3) ** (-g * M / (R * lambda4) - 1)
+    rho3 = rho2 * (1 + lambda3 * (H3 - H2) / T1to2)**(-g * M / (R * lambda3) - 1)
+    rho4 = rho3 * (1 + lambda4 * (H4 - H3) / T3)**(-g * M / (R * lambda4) - 1)
 
     if h < Hlow:
         print('Error: h should not lower than -610m')
@@ -66,20 +66,20 @@ def ISA_calc(h):
         rho = -1
     elif h <= H1:
         T = T0 + lambda1 * h
-        P = P0 * (1 + lambda1 * h / T0) ** (-g * M / (R * lambda1))
-        rho = rho0 * (1 + lambda1 * h / T0) ** (-g * M / (R * lambda1) - 1)
+        P = P0 * (1 + lambda1 * h / T0)**(-g * M / (R * lambda1))
+        rho = rho0 * (1 + lambda1 * h / T0)**(-g * M / (R * lambda1) - 1)
     elif h <= H2:
         T = T1to2
         P = P1 * math.exp(-g * M * (h - H1) / (R * T1to2))
         rho = rho1 * math.exp(-g * M * (h - H1) / (R * T1to2))
     elif h <= H3:
         T = T1to2 + lambda3 * (h - H2)
-        P = P2 * (1 + lambda3 * (h - H2) / T1to2) ** (-g * M / (R * lambda3))
-        rho = rho2 * (1 + lambda3 * (h - H2) / T1to2) ** (-g * M / (R * lambda3) - 1)
+        P = P2 * (1 + lambda3 * (h - H2) / T1to2)**(-g * M / (R * lambda3))
+        rho = rho2 * (1 + lambda3 * (h - H2) / T1to2)**(-g * M / (R * lambda3) - 1)
     elif h <= H4:
         T = T3 + lambda4 * (h - H3)
-        P = P3 * (1 + lambda4 * (h - H3)/ T3) ** (-g * M / (R * lambda4))
-        rho = rho3 * (1 + lambda4 * (h - H3) / T3) ** (-g * M / (R * lambda4) - 1)
+        P = P3 * (1 + lambda4 * (h - H3)/ T3)**(-g * M / (R * lambda4))
+        rho = rho3 * (1 + lambda4 * (h - H3) / T3)**(-g * M / (R * lambda4) - 1)
     elif h <= H5:
         T = T4to5
         P = P4 * math.exp(-g * M * (h - H4) / (R * T4to5))
